@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Writing | Raunak Kumar Pandey</title>
+  <meta name="description"
+    content="Notes on ML, computer vision and software engineering by Raunak Kumar Pandey.">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('theme'); } catch (e) { }
+      if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark-theme');
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="/styles/styles.css?v=2026-10-02">
+  <link rel="stylesheet" type="text/css" href="/styles/blog.css?v=2026-10-02">
+</head>
+
+<body>
+  <div class="blog-nav">
+    <a href="/index.html" class="blog-nav-back">← Home</a>
+  </div>
+
+  <header class="blog-header">
+    <h1 class="blog-title">Writing</h1>
+    <p class="blog-subtitle">Notes on ML, research and building software.</p>
+  </header>
+
+  <nav class="theme-bar" id="themeBar" aria-label="Filter by theme"></nav>
+
+  <main class="blog-list-container" id="blogList">
+    <p class="blog-loading">Loading…</p>
+  </main>
+
+  <footer class="blog-footer">
+    <a href="/index.html">← Back to portfolio</a>
+  </footer>
+
+  <script src="/blog/marked.min.js"></script>
+  <script src="/blog/blog.js?v=2026-10-02"></script>
+  <script>
+    (function () {
+      var container = document.getElementById('blogList');
+      var themeBar = document.getElementById('themeBar');
+
+      function hrefFor(slug) {
+        return '/blog/post.html?slug=' + encodeURIComponent(slug);
+      }
+
+      // Month and year is enough on a list; the full date belongs on the post.
+      function shortDate(value) {
+        var d = new Date(value);
+        if (!value || isNaN(d)) return '';
+        return d.toLocaleDateString('en-US', { month: 'short', year: 'numeric', timeZone: 'UTC' });
+      }
+
+      function entry(post, i) {
+        var meta = post.meta;
+        var num = String(i + 1).padStart(2, '0');
+
+        return '<a class="blog-entry" data-topic="' + Blog.escapeHtml(Blog.topicOf(meta)) + '" ' +
+          'href="' + hrefFor(post.slug) + '">' +
+          '<span class="entry-num">' + num + '</span>' +
+          '<span class="entry-text">' +
+          '<h2 class="blog-entry-title">' + Blog.escapeHtml(meta.title || post.slug) + '</h2>' +
+          (meta.description ? '<p class="blog-entry-desc">' + Blog.escapeHtml(meta.description) + '</p>' : '') +
+          '</span>' +
+          '<span class="entry-meta">' +
+          '<span class="label">' + Blog.escapeHtml(Blog.topicOf(meta)) + '</span>' +
+          '<span class="entry-date">' + Blog.escapeHtml(shortDate(meta.date)) + '</span>' +
+          '</span>' +
+          '</a>';
+      }
+
+      function buildThemeBar(themes) {
+        themeBar.innerHTML = '';
+        if (themes.length < 2) return; // one theme is not a choice
+        themeBar.innerHTML = ['all'].concat(themes).map(function (t) {
+          return '<button type="button" class="theme-chip" data-topic="' + Blog.escapeHtml(t) + '" ' +
+            'aria-pressed="' + (t === 'all') + '">' + Blog.escapeHtml(t) + '</button>';
+        }).join('');
+      }
+
+      themeBar.addEventListener('click', function (e) {
+        var chip = e.target.closest('.theme-chip');
+        if (!chip) return;
+        var pick = chip.getAttribute('data-topic');
+
+        Array.prototype.forEach.call(themeBar.querySelectorAll('.theme-chip'), function (c) {
+          c.setAttribute('aria-pressed', String(c === chip));
+        });
+        Array.prototype.forEach.call(container.querySelectorAll('.blog-entry'), function (el) {
+          el.style.display = (pick === 'all' || el.getAttribute('data-topic') === pick) ? '' : 'none';
+        });
+      });
+
+      function render(posts) {
+        if (!posts.length) {
+          themeBar.innerHTML = '';
+          container.innerHTML = '<p class="blog-empty">Nothing here yet.</p>';
+          return;
+        }
+        container.innerHTML = posts.map(entry).join('');
+
+        var themes = [];
+        posts.forEach(function (p) {
+          var t = Blog.topicOf(p.meta);
+          if (themes.indexOf(t) === -1) themes.push(t);
+        });
+        buildThemeBar(themes);
+      }
+
+      Blog.loadPosts('/blog/', '/content/content.json')
+        .then(render)
+        .catch(function (e) {
+          console.error('Failed to load posts:', e);
+          container.innerHTML = '<p class="blog-empty">Couldn’t load posts.</p>';
+        });
+    })();
+  </script>
+  <script src="/scripts/site.js?v=2026-10-02"></script>
+</body>
+
+</html>

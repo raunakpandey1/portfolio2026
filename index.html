@@ -1,0 +1,457 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Raunak Kumar Pandey</title>
+  <meta name="description" content="Raunak Kumar Pandey, Master's in Computer Science (Research) at University at Buffalo - SUNY. ML & computer vision researcher and software engineer.">
+  <meta name="author" content="Raunak Kumar Pandey">
+  <link rel="canonical" href="https://raunakp.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://raunakp.com/">
+  <meta property="og:title" content="Raunak Kumar Pandey">
+  <meta property="og:description" content="Master's in Computer Science (Research) at University at Buffalo - SUNY. ML & computer vision researcher and software engineer.">
+  <meta property="og:image" content="https://raunakp.com/assets/og.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#fafafa" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#121212" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <script>
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('theme'); } catch (e) { }
+      if (t === 'dark' || (!t && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.classList.add('dark-theme');
+      }
+    })();
+  </script>
+  <link rel="stylesheet" type="text/css" href="/styles/styles.css?v=2026-10-02">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+  <button class="info-toggle" id="infoToggle" aria-label="Last updated info">
+    <span class="info-icon">i</span>
+    <div class="info-tooltip">
+      <span class="info-tooltiptext" id="lastUpdated"></span>
+    </div>
+  </button>
+
+  <div id="dhead" class="container">
+    <div class="row">
+      <div id="dpic">
+        <img src="" class="ppic" id="profileImage" alt="Raunak Kumar Pandey" />
+      </div>
+      <div id="ddesc">
+        <h1 id="userName"></h1>
+        <h2 id="userTagline"></h2>
+        <div id="statusPill"></div>
+        <div id="dico"></div>
+      </div>
+    </div>
+  </div>
+
+  <hr>
+
+  <div id="about" class="container">
+    <div class="ctitle" id="aboutTitle"></div>
+    <div class="about-content" id="aboutContent"></div>
+  </div>
+
+  <div id="now" class="container"></div>
+
+  <div id="skills" class="container"></div>
+
+  <div id="history" class="container"></div>
+
+  <div class="writing-section">
+    <div class="container" id="writingContainer"></div>
+  </div>
+
+  <div id="pet-projects" class="container"></div>
+
+  <div class="container" id="publicationsContainer"></div>
+
+  <div class="container" id="miscContainer"></div>
+
+  <div class="container" id="moreLinksContainer"></div>
+
+  <div id="contact" class="container">
+    <div class="ctitle" id="contactTitle"></div>
+    <div class="contact-content">
+      <p id="contactDescription"></p>
+      <form id="contactForm" class="contact-form">
+        <input type="text" id="name" placeholder="" required />
+        <input type="email" id="email" placeholder="" required />
+        <textarea id="message" placeholder="" rows="4" required></textarea>
+        <button type="submit" id="submitBtn"></button>
+      </form>
+      <div id="formStatus" style="display: none; margin-top: 10px;"></div>
+    </div>
+  </div>
+
+  <br><br><br><br>
+
+  <script src="/blog/marked.min.js"></script>
+  <script src="/blog/blog.js?v=2026-10-02"></script>
+
+  <script type="text/javascript">
+    let siteContent = null;
+
+    async function loadContent() {
+      try {
+        const response = await fetch('/content/content.json', { cache: 'no-cache' });
+        siteContent = await response.json();
+        populateContent();
+      } catch (error) {
+        console.error('Failed to load content:', error);
+      }
+    }
+
+    function populateContent() {
+      if (!siteContent) return;
+
+      document.getElementById('profileImage').src = siteContent.header.profileImage;
+      document.getElementById('userName').textContent = siteContent.header.name;
+
+      document.getElementById('userTagline').textContent = siteContent.header.tagline;
+
+      const status = siteContent.header.status;
+      if (status && status.show) {
+        document.getElementById('statusPill').innerHTML = `
+          <span class="status-pill"><span class="status-dot"></span>${status.text}${status.location ? ` <span class="status-sep">·</span> ${status.location}` : ''}</span>
+        `;
+      }
+
+      const socialLinks = document.getElementById('dico');
+      socialLinks.innerHTML = siteContent.header.socialLinks
+        .filter(link => link.show !== false)
+        .map(link =>
+          `<a href="${link.url}" aria-label="${link.platform}" title="${link.platform}"${/^https?:/.test(link.url) ? ' target="_blank" rel="noopener"' : ''}><i class="${link.icon}"></i></a>`
+        ).join('');
+
+      document.getElementById('lastUpdated').textContent = `Last updated: ${siteContent.info.lastUpdated}`;
+
+      document.getElementById('aboutTitle').textContent = siteContent.about.title;
+      document.getElementById('aboutContent').innerHTML = siteContent.about.paragraphs.map(p =>
+        `<p>${p}</p>`
+      ).join('');
+
+      const now = siteContent.now;
+      if (now && now.items && now.items.length) {
+        document.getElementById('now').innerHTML = `
+          <div class="ctitle">${now.title}${now.updated ? `<span class="ctitle-note">updated ${now.updated}</span>` : ''}</div>
+          <ul class="now-list">
+            ${now.items.map(item => `<li><span class="now-label">${item.label}</span><span class="now-text">${item.text}</span></li>`).join('')}
+          </ul>
+        `;
+      }
+
+      const skills = siteContent.skills;
+      if (skills && skills.groups && skills.groups.length) {
+        document.getElementById('skills').innerHTML = `
+          <div class="ctitle">${skills.title}</div>
+          <div class="skill-groups">
+            ${skills.groups.map(g => `
+              <div class="skill-group">
+                <div class="skill-name">${g.name}</div>
+                <div class="skill-chips">${g.items.map(s => `<span class="chip">${s}</span>`).join('')}</div>
+              </div>
+            `).join('')}
+          </div>
+        `;
+      }
+
+      const historyContainer = document.getElementById('history');
+      historyContainer.innerHTML = (siteContent.history.title ? `<div class="ctitle">${siteContent.history.title}</div>` : '') + siteContent.history.entries.map(entry => `
+        <div class="entry row">
+          <div class="timespan">${entry.timespan}</div>
+          <div class="ico">
+            <div class="entry-dot"></div>
+            <img src="${entry.logo}" alt="" loading="lazy" onerror="this.style.visibility='hidden'" />
+          </div>
+          <div class="desc">${entry.description}</div>
+        </div>
+      `).join('');
+
+      const writingContainer = document.getElementById('writingContainer');
+      const mediumArticles = siteContent.writing.articles || [];
+
+      writingContainer.innerHTML = `
+        <div class="ctitle">${siteContent.writing.title}</div>
+        <div id="onSiteWriting" style="margin-bottom: 30px;"></div>
+        ${mediumArticles.length ? `
+        <div>
+          <h3 style="font-weight: 500; font-size: 18px; color: var(--text-primary); margin-bottom: 12px;">Elsewhere</h3>
+          <div style="font-size: 14px; color: var(--text-muted); margin-bottom: 8px;">${siteContent.writing.subtitle}</div>
+          <ul class="nodot">
+            ${mediumArticles.map(article =>
+              `<li>${article.date} <a href="${article.url}">${article.title}</a></li>`
+            ).join('')}
+          </ul>
+        </div>` : ''}
+      `;
+
+      // Post metadata lives in each post's frontmatter, so the three most recent
+      // are read from the files themselves rather than duplicated in content.json.
+      Blog.loadPosts('/blog/', '/content/content.json')
+        .then(posts => {
+          const onSite = document.getElementById('onSiteWriting');
+          if (!onSite || !posts.length) return;
+          onSite.innerHTML = `
+            <h3 style="font-weight: 500; font-size: 18px; color: var(--text-primary); margin-bottom: 12px;">On this site</h3>
+            <ul class="nodot">
+              ${posts.slice(0, 3).map(post =>
+                `<li>${Blog.escapeHtml(Blog.formatDate(post.meta.date))} <a href="/blog/post.html?slug=${encodeURIComponent(post.slug)}">${Blog.escapeHtml(post.meta.title || post.slug)}</a></li>`
+              ).join('')}
+            </ul>
+            <p style="margin-top: 10px; font-size: 14px;">
+              <a href="/blog.html" style="color: var(--accent-blue); text-decoration: none;">→ All writing</a>
+            </p>
+          `;
+        })
+        .catch(e => console.warn('Could not load on-site posts:', e));
+
+      const projectsContainer = document.getElementById('pet-projects');
+      projectsContainer.innerHTML = `
+        <div class="ctitle">${siteContent.projects.title}</div>
+        ${(siteContent.projects.groups || [{ key: null, title: '' }]).map(group => `
+          ${group.title ? `<h3 class="proj-group">${group.title}</h3>` : ''}
+          ${siteContent.projects.items.map((project, index) => ({ project, index }))
+            .filter(({ project }) => !group.key || project.category === group.key)
+            .map(({ project, index }) => `
+          <div class="project" onclick="openProjectModal(${index})">
+            <div class="pico"><img src="${project.image}" alt="" loading="lazy" style="max-width: 64px;" /></div>
+            <div class="pdesc"><a href="${project.url}" onclick="event.stopPropagation()" target="_blank" rel="noopener">${project.name}</a> ${project.description}
+              ${project.demo ? `<a class="demo-link" href="${project.demo}" onclick="event.stopPropagation()" target="_blank" rel="noopener">live ↗</a>` : ''}
+              ${project.detailedDescription ? '<div class="project-expand-hint">Click to read more...</div>' : ''}
+            </div>
+            <div class="pend"></div>
+          </div>
+          `).join('')}
+        `).join('')}
+      `;
+
+      // Create modal for project details
+      createProjectModal();
+
+      const publicationsContainer = document.getElementById('publicationsContainer');
+      const pubs = siteContent.publications.items || [];
+      publicationsContainer.innerHTML = `
+        <div class="ctitle">${siteContent.publications.title}</div>
+        ${pubs.length ? pubs.map(item => `
+          <div class="pub">
+            <div class="pub-title">${item.url ? `<a href="${item.url}">${item.title}</a>` : item.title}</div>
+            <div class="pub-venue">${item.venue}</div>
+            <div class="pub-authors">${item.authors}</div>
+          </div>
+        `).join('') : `<p class="empty-note">${siteContent.publications.emptyText || ''}</p>`}
+      `;
+
+      const miscContainer = document.getElementById('miscContainer');
+      miscContainer.innerHTML = `
+        <div class="ctitle">${siteContent.misc.title}</div>
+        ${siteContent.misc.items.map(item => `
+          <div class="misc-item">
+            <strong>${item.url ? `<a href="${item.url}" target="_blank" rel="noopener">${item.title}</a>` : item.title}</strong>
+            ${item.description ? ` - ${item.description}` : ''}
+          </div>
+        `).join('')}
+      `;
+
+      const more = siteContent.moreLinks;
+      if (more && more.items && more.items.length) {
+        document.getElementById('moreLinksContainer').innerHTML = `
+          <div class="ctitle">${more.title}</div>
+          ${more.items.map(item => `
+            <div class="misc-item">
+              <strong><a href="${item.url}" target="_blank" rel="noopener">${item.title}</a></strong>
+              ${item.description ? ` - ${item.description}` : ''}
+            </div>
+          `).join('')}
+        `;
+      }
+
+      document.getElementById('contactTitle').textContent = siteContent.contact.title;
+      document.getElementById('contactDescription').textContent = siteContent.contact.description;
+      document.getElementById('name').placeholder = siteContent.contact.placeholders.name;
+      document.getElementById('email').placeholder = siteContent.contact.placeholders.email;
+      document.getElementById('message').placeholder = siteContent.contact.placeholders.message;
+      document.getElementById('submitBtn').textContent = siteContent.contact.submitButton;
+
+      // Sections are filled in now, so they can be observed. Then honour any
+      // #hash in the URL, which pointed at an element that didn't exist yet.
+      if (window.Site) Site.reveal('.entry, .project, .pub, .misc-item, .skill-group, .now-list li, #contact');
+      if (location.hash) {
+        const target = document.getElementById(location.hash.slice(1));
+        if (target) target.scrollIntoView();
+      }
+    }
+
+    loadContent();
+  </script>
+
+  <script type="text/javascript">
+    // Get a free access key at https://web3forms.com and paste it here.
+    // Until then the form falls back to opening the visitor's mail app.
+    const WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_KEY';
+
+    document.getElementById('contactForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const submitBtn = document.getElementById('submitBtn');
+      const formStatus = document.getElementById('formStatus');
+      const name = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      formStatus.textContent = '';
+      formStatus.className = '';
+      formStatus.style.display = 'none';
+
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!name || !email || !message) {
+        formStatus.textContent = siteContent?.contact.messages.fillAllFields || 'Please fill in all fields.';
+        formStatus.className = 'error';
+        formStatus.style.display = 'block';
+        return;
+      }
+
+      if (!emailRegex.test(email)) {
+        formStatus.textContent = siteContent?.contact.messages.invalidEmail || 'Please enter a valid email address.';
+        formStatus.className = 'error';
+        formStatus.style.display = 'block';
+        return;
+      }
+
+      if (WEB3FORMS_ACCESS_KEY.startsWith('YOUR_')) {
+        const to = (siteContent.header.socialLinks.find(l => l.url.startsWith('mailto:')) || {}).url || 'mailto:';
+        location.href = `${to}?subject=${encodeURIComponent('Portfolio contact from ' + name)}&body=${encodeURIComponent(message + '\n\n- ' + name + ' (' + email + ')')}`;
+        return;
+      }
+
+      submitBtn.disabled = true;
+      const originalButtonText = submitBtn.textContent;
+      submitBtn.textContent = siteContent?.contact.submitButtonSending || 'Sending...';
+
+      try {
+        const payload = {
+          access_key: WEB3FORMS_ACCESS_KEY,
+          name: name,
+          email: email,
+          message: message,
+          subject: `Portfolio Contact from ${name}`,
+          from_name: name,
+          timestamp: new Date().toISOString()
+        };
+
+        const response = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          },
+          body: JSON.stringify(payload)
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success) {
+          formStatus.textContent =
+            siteContent?.contact.messages.success ||
+            result.message ||
+            "Message sent successfully! I'll get back to you soon.";
+          formStatus.className = 'success';
+          formStatus.style.display = 'block';
+          document.getElementById('contactForm').reset();
+
+          setTimeout(() => {
+            formStatus.style.display = 'none';
+          }, 5000);
+        } else {
+          throw new Error(result.message || 'Submission failed');
+        }
+      } catch (error) {
+        formStatus.textContent =
+          siteContent?.contact.messages.error ||
+          'Failed to send message. Please try again or email me directly.';
+        formStatus.className = 'error';
+        formStatus.style.display = 'block';
+        console.error('Contact form error:', error);
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.textContent = originalButtonText;
+      }
+    });
+  </script>
+
+  <script type="text/javascript">
+    // Project Modal Functions
+    function createProjectModal() {
+      if (document.getElementById('projectModal')) return;
+
+      const modal = document.createElement('div');
+      modal.id = 'projectModal';
+      modal.className = 'modal';
+      modal.innerHTML = `
+        <div class="modal-content">
+          <span class="close" onclick="closeProjectModal()">&times;</span>
+          <div class="modal-body">
+            <div class="modal-project-header">
+              <img id="modalProjectImage" src="" alt="project" class="modal-project-image" />
+              <div class="modal-project-info">
+                <h2 id="modalProjectName"></h2>
+                <a id="modalProjectLink" href="" target="_blank" rel="noopener" class="github-link">View on GitHub →</a>
+                <a id="modalProjectDemo" href="" target="_blank" rel="noopener" class="github-link" style="margin-left: 14px;">Live demo ↗</a>
+              </div>
+            </div>
+            <div id="modalProjectDescription" class="modal-project-description"></div>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+    }
+
+    function openProjectModal(index) {
+      const project = siteContent.projects.items[index];
+      if (!project.detailedDescription) {
+        window.open(project.url, '_blank', 'noopener');
+        return;
+      }
+
+      document.getElementById('modalProjectName').textContent = project.name;
+      document.getElementById('modalProjectImage').src = project.image;
+      document.getElementById('modalProjectLink').href = project.url;
+      const demo = document.getElementById('modalProjectDemo');
+      demo.style.display = project.demo ? '' : 'none';
+      demo.href = project.demo || '';
+      document.getElementById('modalProjectDescription').innerHTML = project.detailedDescription;
+
+      document.getElementById('projectModal').style.display = 'block';
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeProjectModal() {
+      document.getElementById('projectModal').style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+
+    window.onclick = function (event) {
+      const modal = document.getElementById('projectModal');
+      if (modal && event.target == modal) {
+        closeProjectModal();
+      }
+    }
+
+    document.addEventListener('keydown', function (e) {
+      const modal = document.getElementById('projectModal');
+      if (e.key === 'Escape' && modal && modal.style.display === 'block') closeProjectModal();
+    });
+  </script>
+
+  <script src="/scripts/site.js?v=2026-10-02"></script>
+
+</body>
+
+</html>

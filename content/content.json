@@ -1,0 +1,409 @@
+{
+  "header": {
+    "name": "Raunak Kumar Pandey",
+    "tagline": "Aspiring AI Engineer & Researcher · Software Engineer",
+    "profileImage": "assets/profile.jpg",
+    "status": {
+      "show": true,
+      "text": "Open to new grad roles",
+      "location": "Jersey City, NJ"
+    },
+    "socialLinks": [
+      {
+        "platform": "github",
+        "url": "https://github.com/raunakpandey1",
+        "icon": "fab fa-github iico"
+      },
+      {
+        "platform": "linkedin",
+        "url": "https://www.linkedin.com/in/raunakpandey1/",
+        "icon": "fab fa-linkedin iico"
+      },
+      {
+        "platform": "x",
+        "url": "https://x.com/raunaq696",
+        "icon": "fab fa-x-twitter iico"
+      },
+      {
+        "platform": "email",
+        "url": "mailto:rpandey3@buffalo.edu",
+        "icon": "fa-solid fa-envelope iico"
+      },
+      {
+        "platform": "resume",
+        "url": "assets/resume.pdf",
+        "show": false,
+        "icon": "fa-solid fa-file iico-resume"
+      }
+    ]
+  },
+  "info": {
+    "lastUpdated": "2026-10-02"
+  },
+  "about": {
+    "title": "about",
+    "paragraphs": [
+      "I'm a software engineer and researcher. I build intelligent AI systems, from automating the software development lifecycle (SDLC) to making teaching and learning smoother for professors and students. Basically, I make machines do the boring work so humans don't have to.",
+      "Now I'm doing my Master's in Computer Science (Research) at the <a href=\"https://www.buffalo.edu/\">University at Buffalo - SUNY</a>, pursuing supervised research under <a href=\"https://cse.buffalo.edu/~jsyuan/\">Prof. Junsong Yuan</a> (Chair, CSE) on human motion generation. Basically, I teach computers how people move. They keep giving humans three knees. I tried blockchain once, then agentic AI and LLMs showed up and I never looked back.",
+      "Off the keyboard: badminton and cricket. Same energy, worse aim. Say hi at <a href=\"mailto:rpandey3@buffalo.edu\">rpandey3@buffalo.edu</a> or <a href=\"mailto:pandeyraunak1007@gmail.com\">pandeyraunak1007@gmail.com</a>."
+    ]
+  },
+  "now": {
+    "title": "now",
+    "updated": "Oct 2026",
+    "items": [
+      {
+        "label": "Studying",
+        "text": "Master's in Computer Science at UB - SUNY."
+      },
+      {
+        "label": "Researching",
+        "text": "Human motion generation."
+      },
+      {
+        "label": "Exploring",
+        "text": "Agentic AI, LLMs and computer vision."
+      },
+      {
+        "label": "Looking for",
+        "text": "New grad software engineering and AI/ML roles starting June 2027."
+      }
+    ]
+  },
+  "skills": {
+    "title": "skills",
+    "groups": [
+      {
+        "name": "Languages",
+        "items": [
+          "Java",
+          "Python",
+          "C++",
+          "C",
+          "JavaScript",
+          "SQL",
+          "Solidity"
+        ]
+      },
+      {
+        "name": "ML / AI",
+        "items": [
+          "PyTorch",
+          "LLMs",
+          "Fine-tuning",
+          "Generative models",
+          "Computer Vision",
+          "Hugging Face",
+          "NLP"
+        ]
+      },
+      {
+        "name": "Agentic AI",
+        "items": [
+          "LangGraph",
+          "LangChain",
+          "RAG",
+          "Vector DBs: Qdrant, Milvus, FAISS"
+        ]
+      },
+      {
+        "name": "Web",
+        "items": [
+          "Spring Boot",
+          "React",
+          "Node.js",
+          "Express",
+          "Django"
+        ]
+      },
+      {
+        "name": "Cloud",
+        "items": [
+          "AWS (Certified Developer - Associate)",
+          "Azure",
+          "GCP"
+        ]
+      },
+      {
+        "name": "Data & Infra",
+        "items": [
+          "PostgreSQL",
+          "MongoDB",
+          "Firebase",
+          "JUnit / Mockito",
+          "Git"
+        ]
+      }
+    ]
+  },
+  "history": {
+    "title": "experience",
+    "entries": [
+      {
+        "timespan": "2026 - Present",
+        "logo": "assets/classavo.png",
+        "description": "<strong>Software Developer Intern</strong> at <a href=\"https://www.classavo.com/\">Classavo</a>, Buffalo, NY. <br/> Building MCP tools, AI features, and new frontend and backend features for a fast-growing edtech platform that serves thousands of professors and students. Founded by Forbes 30 Under 30 honorees."
+      },
+      {
+        "timespan": "2026 - Present",
+        "logo": "assets/ub.svg",
+        "description": "<strong>Graduate Research Assistant</strong> at The Research Foundation for SUNY, University at Buffalo. <br/> <i>Vision Computing Lab:</i> research in generative models and multimodal AI, advised by <a href=\"https://cse.buffalo.edu/~jsyuan/\">Prof. Junsong Yuan</a>. Reached 0.26 beat alignment on the AIST++ dataset with a transformer-based model, and built an AI Coach platform where a Qwen3-VL-4B agent scores a live pose against a target video and gives spoken guidance when a learner is stuck for over 10 seconds. <br/> <i>CAVAS Lab (autonomous vehicles):</i> V2X communication project with <a href=\"https://cse.buffalo.edu/~qiao/\">Prof. Chunming Qiao</a>. Helped establish communication between a LiDAR-mounted vehicle and on-board/roadside units (OBU/RSU)."
+      },
+      {
+        "timespan": "2025 - 2027",
+        "logo": "assets/ub.svg",
+        "description": "<strong>Master's in Computer Science (Research)</strong> at <a href=\"https://www.buffalo.edu/\">University at Buffalo - SUNY</a>. <br/> Coursework: Machine Learning, Computer Vision, Deep Learning."
+      },
+      {
+        "timespan": "2023 - 2025",
+        "logo": "assets/tcs.png",
+        "description": "<strong>Software Engineer</strong> at <b>TCS Research</b>, Tata Consultancy Services (CTO Team). <br/> Built an intelligent AI system to automate the SDLC and an internal AI agent to identify talent, with React frontends and Spring Boot, PostgreSQL and Azure backends. Engineered 15+ REST APIs with caching (30% faster responses), wrote a custom Java code parser that saves 4 hours of reverse-engineering per codebase, and raised test coverage from 45% to 95%. <br/> <i>React · Spring Boot · PostgreSQL · Azure · Java</i>"
+      },
+      {
+        "timespan": "2023",
+        "logo": "assets/tcs.png",
+        "description": "<strong>Software Engineer Intern</strong> at <b>TCS Research</b>, Tata Consultancy Services (CTO Team). <br/> Led development of a data-driven web platform that improved decision-making efficiency by 60%, with interactive visualizations (bar, pie and Pareto charts) for clearer data insights."
+      },
+      {
+        "timespan": "2021 - 2022",
+        "logo": "assets/shellcode.jpg",
+        "description": "<strong>Full Stack Web Developer (Intern)</strong> at <b>Shellcode Solutions</b>. <br/> Built admin dashboards and an e-commerce platform: auth, cart, coupon codes, checkout and order history. <br/> <i>React · Node.js · Cloud Firestore · MongoDB</i>"
+      },
+      {
+        "timespan": "2021 - 2022",
+        "logo": "assets/softezi.png",
+        "description": "<strong>Full Stack Web Developer (Intern)</strong> at <b>SoftEzi Solutions LLP</b>. <br/> Optimized database reads/writes to eliminate page-load lag, designed REST APIs and auth with Node/Express, and built reusable React components."
+      },
+      {
+        "timespan": "2019 - 2023",
+        "logo": "assets/mu.svg",
+        "description": "<strong>Bachelor's in Computer Science</strong> at <a href=\"https://mu.ac.in/\">University of Mumbai</a>. <br/> GPA: 4.0 / 4.0"
+      }
+    ]
+  },
+  "writing": {
+    "title": "writing",
+    "subtitle": "",
+    "onSiteArticles": [
+      {
+        "file": "hello-world.md"
+      }
+    ],
+    "articles": []
+  },
+  "projects": {
+    "title": "pet projects",
+    "items": [
+      {
+        "name": "PatchPilot",
+        "url": "https://github.com/raunakpandey1/PatchPilot",
+        "image": "assets/projects/patchpilot.svg",
+        "description": "is an AI agent I built to help with my own open-source contributions. It figures out unfamiliar repos through retrieval over source code and Git history, then writes working patches for GitHub issues. Built with Python, LangGraph, LangSmith, RAG, Qdrant and MCP.",
+        "detailedDescription": "PatchPilot started because I wanted to contribute to open source faster, without spending days just understanding a new codebase. (Jun - Aug 2026)<br/><br/><strong>What it does:</strong><ul><li>Reads an unfamiliar repository using retrieval over its source code and Git history</li><li>Generates working code patches for open GitHub issues</li><li>Follows policy guardrails so it doesn't go rogue on someone's repo</li><li>Runs run-level evaluation to check how well each attempt did</li></ul><strong>Stack:</strong> Python · LangGraph · LangSmith · RAG · Qdrant · MCP",
+        "category": "ai"
+      },
+      {
+        "name": "De novo Peptide Sequencing",
+        "category": "ai",
+        "url": "https://github.com/raunakpandey1/diffusion-peptide-sequencing",
+        "image": "assets/projects/peptide.jpg",
+        "description": "reads protein sequences straight from mass spectrometry data, even for unknown organisms hiding in wastewater. I worked on InstaNovo (transformers) and InstaNovo+ (diffusion-based refinement). Presented at CSE Demo Day 2026.",
+        "detailedDescription": "A deep learning project on de novo peptide sequencing from tandem mass spectrometry (MS/MS) data, presented at UB CSE Demo Day 2026.<br/><br/>Wastewater samples can contain proteins from many unknown organisms that aren't in any reference database, so we can't just look them up. We compared Casanovo, Novor, InstaNovo and InstaNovo+.<br/><br/><strong>My part:</strong><ul><li>InstaNovo: predicts peptide sequences from spectra with transformers</li><li>InstaNovo+: refines those predictions with a diffusion-transformer model</li></ul><strong>Evaluation:</strong> precision and recall on E. coli vesicle proteomics data, and false discovery rate (FDR) plus biological interpretation with UniPept on wastewater samples.<br/><br/>Built with my teammate Swati Bhatt, guided by Prof. Mingchen Gao.<br/><br/><strong>Stack:</strong> PyTorch · Transformers · Diffusion models"
+      },
+      {
+        "name": "Human Skeleton Joint Inpainting",
+        "category": "ai",
+        "url": "https://github.com/raunakpandey1/Human_Skeleton_Joint_Inpainting_With_DDIM",
+        "image": "assets/projects/skeleton.jpg",
+        "description": "rebuilds missing elbow and knee joints on human skeletons using a DDIM diffusion model, reaching hole PSNR 22.20 and hole L1 0.09 on COCO keypoints. Built with PyTorch, OpenCV and diffusion models.",
+        "detailedDescription": "The sequel to my MNIST inpainting project. Once the model could fill holes in digits, I gave it a harder job: people.<br/><br/>I masked the elbow and knee joints on COCO keypoint skeletons and trained a DDIM diffusion model in PyTorch to reconstruct them. (Nov 2025 - Feb 2026)<br/><br/><strong>Results (measured inside the masked joints):</strong><ul><li>PSNR: 22.20</li><li>L1: 0.09</li></ul><strong>Stack:</strong> PyTorch · OpenCV · Diffusion models"
+      },
+      {
+        "name": "DDIM Inpainting on MNIST",
+        "category": "ai",
+        "url": "https://github.com/raunakpandey1/MNIST_Digit_Restoration_With_DDIM",
+        "image": "assets/projects/mnist.jpg",
+        "description": "was my diffusion warm-up. I cut a hole in the center of MNIST digits and trained a timestep-conditioned U-Net to fill it back in with DDIM sampling. This is what led to the skeleton project.",
+        "detailedDescription": "My first diffusion project. I trained a timestep-conditioned U-Net diffusion model on MNIST digits with the center masked out, then reconstructed the missing region with DDIM sampling.<br/><br/>To keep it honest, evaluation only counts pixels inside the hole: hole-only PSNR and hole-only L1 (MAE).<br/><br/>It worked well enough that I moved on to human skeletons next.<br/><br/><strong>Stack:</strong> PyTorch · Diffusion models (DDIM) · U-Net"
+      },
+      {
+        "name": "eBay 2025 ML Competition: Automotive NER",
+        "category": "ai",
+        "url": "https://github.com/raunakpandey1/ebay_ml_competition_2025",
+        "image": "assets/projects/ebay-ner.svg",
+        "description": "pulls car part details out of German eBay product titles. Scored a 0.869 weighted F-score (beta = 0.2) by training XLM-RoBERTa with BIOES tagging on 9K labeled plus 2M unlabeled titles. Built with Python, NLP and XLM-RoBERTa.",
+        "detailedDescription": "eBay car part titles are short, messy and full of abbreviations: OEM codes, sizes, random casing. This project turns raw German titles into structured entities, which helps with better search, cleaner product attributes, and smarter cataloging and recommendations. (Jul - Oct 2025)<br/><br/><strong>Data:</strong> about 2M unlabeled German motor-vehicle part titles, plus 9K hand-labeled samples with token-level entity tags.<br/><br/><strong>How:</strong><ul><li>Cleaned up whitespace, special characters, German abbreviations and casing, with rules for units (mm, inch), part numbers and OEM codes</li><li>Converted the labels to the BIOES scheme (Begin, Inside, Outside, End, Single)</li><li>Fine-tuned FacebookAI/xlm-roberta-large as a token classifier with token-level cross-entropy</li></ul><strong>Result:</strong> 0.869172 weighted F0.2. The metric uses beta = 0.2, so precision matters much more than recall. Better to be right than to guess.<br/><br/><strong>Stack:</strong> Python · PyTorch · Hugging Face Transformers · XLM-RoBERTa"
+      },
+      {
+        "name": "Medstore",
+        "url": "https://github.com/raunakpandey1/Medstore-mern",
+        "demo": "https://medstore.onrender.com/",
+        "image": "assets/projects/medstore.jpg",
+        "description": "is a medical e-store I built during COVID to keep medicine supply moving. It earned ₹200K from medical shop owners and still has a few users. Built with React, Node.js, Spring Boot and MongoDB.",
+        "detailedDescription": "During COVID, getting medicines from suppliers to shops was a mess. Medstore is a two-sided store where medical shop owners can buy and sell medical essentials.<br/><br/>It earned ₹200K from medical shop owners, and a few people still use it today.<br/><br/><strong>Stack:</strong> React · Node.js · Spring Boot · MongoDB",
+        "category": "software"
+      },
+      {
+        "name": "EcoChain",
+        "url": "https://github.com/raunakpandey1/Hackformers_Brocode_07",
+        "image": "assets/projects/ecochain.jpg",
+        "description": "is a DApp that rewards people for reporting places that harm the environment to the police, supporting climate change efforts. Built with React, Hardhat, Ethers.js, Solidity and Pinata.",
+        "detailedDescription": "EcoChain lets anyone report places or activities that harm the environment. The report goes to the police, and verified reports earn the reporter crypto rewards. Evidence is stored on IPFS through Pinata.<br/><br/><strong>Stack:</strong> React · Hardhat · Ethers.js · Solidity · Pinata",
+        "category": "software"
+      },
+      {
+        "name": "Desto",
+        "url": "https://github.com/raunakpandey1/desto",
+        "demo": "https://desto.onrender.com/",
+        "image": "assets/projects/desto.jpg",
+        "description": "is a decentralised way to share personal files, using IPFS through web3.storage. Built with React, Node.js, Express and MongoDB.",
+        "detailedDescription": "",
+        "category": "software"
+      },
+      {
+        "name": "DryCleaner",
+        "url": "https://github.com/raunakpandey1/DryCleaner",
+        "demo": "https://chicagogreendrycleaners.com/",
+        "image": "assets/projects/drycleaner.jpg",
+        "description": "is a project I built for a client, with all the e-commerce features: auth, cart, coupons, profiles and order history. React frontend, Firebase backend.",
+        "detailedDescription": "A real client project for a dry-cleaning and laundry business, live at chicagogreendrycleaners.com.<br/><br/><strong>Features:</strong><ul><li>Firebase Authentication</li><li>Cart system and coupon codes</li><li>User profiles and order history</li></ul><strong>Stack:</strong> React · Firebase",
+        "category": "software"
+      },
+      {
+        "name": "TernaLogin",
+        "url": "https://github.com/raunakpandey1/Student-Attendance-System",
+        "image": "assets/projects/ternalogin.jpg",
+        "description": "is a student attendance app I built during COVID after watching professors take attendance on pen and paper and struggle to keep records. Professors actually used it and liked it. Built with Java and Firebase.",
+        "detailedDescription": "During COVID I noticed professors still taking attendance with pen and paper, and then struggling to keep track of it all. So I built TernaLogin, an Android app to take, manage and analyse student attendance.<br/><br/>Professors used it and gave positive feedback, which made it one of my favourite projects.<br/><br/><strong>Stack:</strong> Java · Firebase · Android Studio",
+        "category": "software"
+      },
+      {
+        "name": "TicTacToe",
+        "url": "https://github.com/raunakpandey1/TIC-TAC-TOE",
+        "image": "assets/projects/tictac.jpg",
+        "description": "is a game I really liked, so I built it in undergrad and made it harder with a timer and limited attempts. Built with Java and Firebase.",
+        "detailedDescription": "",
+        "category": "software"
+      },
+      {
+        "name": "Good Films",
+        "url": "https://github.com/raunakpandey1/Good-Films-Angular",
+        "image": "assets/projects/goodfilms.jpg",
+        "description": "is a movie site I built to try my frontend skills with Angular. React is still my favourite, hehe.",
+        "detailedDescription": "",
+        "category": "software"
+      },
+      {
+        "name": "ERC20 Bounty",
+        "url": "https://github.com/raunakpandey1/smartcontracts",
+        "image": "assets/projects/smartcontr.jpg",
+        "description": "is an ERC20 token smart contract from back when I was really into blockchain. Agents have taken that spot now.",
+        "detailedDescription": "",
+        "category": "software"
+      },
+      {
+        "name": "Analog-Digital Clock",
+        "url": "https://github.com/raunakpandey1/Analog-Digital-Clock",
+        "demo": "https://raunakpandey1.github.io/Analog-Digital-Clock/",
+        "image": "assets/projects/clock.jpg",
+        "description": "is an analog and digital clock in plain HTML, CSS and JavaScript.",
+        "detailedDescription": "",
+        "category": "software"
+      }
+    ],
+    "groups": [
+      {
+        "key": "ai",
+        "title": "AI / ML"
+      },
+      {
+        "key": "software",
+        "title": "Software"
+      }
+    ]
+  },
+  "publications": {
+    "title": "publications",
+    "emptyText": "Research in progress at UB. Papers will show up here.",
+    "items": [
+      {
+        "title": "Meta Commerce – Shopping in Metaverse",
+        "url": "https://ijsrem.com/download/meta-commerce-shopping-in-metaverse",
+        "venue": "· IJSREM (International Journal of Scientific Research in Engineering and Management), May 2023",
+        "authors": "Dnyaneshwar M. Bavkar, <b>Raunak Kumar Pandey</b>, Akash Yadav, Sushil Kumar Gupta, Manasvi Gadpayle"
+      }
+    ]
+  },
+  "misc": {
+    "title": "achievements & certificates",
+    "items": [
+      {
+        "title": "TCS",
+        "description": "recognition certificate",
+        "url": "https://github.com/user-attachments/assets/561cf5a0-cee6-497d-988d-92f1a2dd6ffb"
+      },
+      {
+        "title": "Google Kick Start",
+        "description": "participation certificate",
+        "url": "https://github.com/user-attachments/assets/36be45bc-d6e5-4bdc-a7e2-39859ab5a01c"
+      },
+      {
+        "title": "Machine Learning",
+        "description": "course certificate",
+        "url": "https://github.com/user-attachments/assets/944551b7-3d2a-415d-af1d-86ac1e6706e3"
+      },
+      {
+        "title": "Deep Learning",
+        "description": "course certificate",
+        "url": "https://github.com/user-attachments/assets/5c64fe23-17d1-49d0-b359-f6a242d300f3"
+      },
+      {
+        "title": "Shellcode Solutions",
+        "description": "internship completion & letter of recommendation",
+        "url": "https://github.com/user-attachments/assets/379325b2-6af6-45fc-803e-c7f6bd2954e6"
+      },
+      {
+        "title": "SoftEzi Solutions",
+        "description": "internship completion & letter of recommendation",
+        "url": "https://github.com/user-attachments/assets/44f2fbeb-9812-4255-8447-3f6fe4fb8477"
+      },
+      {
+        "title": "Java, JavaScript, Python, React",
+        "description": "skill certifications",
+        "url": "https://github.com/user-attachments/assets/8fc6edc5-4136-41b4-990e-240766779106"
+      }
+    ]
+  },
+  "moreLinks": {
+    "title": "more links",
+    "items": [
+      {
+        "title": "Medium",
+        "description": "where I write once in a while",
+        "url": "https://medium.com/@raunakpandey1"
+      },
+      {
+        "title": "LeetCode",
+        "description": "where I practice algorithms",
+        "url": "https://leetcode.com/u/raunak__pandey/"
+      }
+    ]
+  },
+  "contact": {
+    "title": "contact",
+    "description": "Want to discuss a project, collaborate on AI/ML research, or just say hi? Drop a message.",
+    "placeholders": {
+      "name": "Your name",
+      "email": "Your email",
+      "message": "Your message"
+    },
+    "submitButton": "Send",
+    "submitButtonSending": "Sending...",
+    "messages": {
+      "fillAllFields": "Please fill in all fields.",
+      "invalidEmail": "Please enter a valid email address.",
+      "success": "Message sent! I'll get back to you soon.",
+      "error": "Couldn't send the message. Please email me directly at rpandey3@buffalo.edu or pandeyraunak1007@gmail.com."
+    }
+  }
+}

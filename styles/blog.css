@@ -1,0 +1,769 @@
+/* Blog - a reading surface.
+   Rule of the page: metadata never sits inside the writing. Dates, films and
+   credits live in the left rail or in small type below; the column itself is
+   only prose, quotes and media. */
+
+@import url('https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&display=swap');
+
+:root {
+    --blog-col: 620px;
+    --blog-rail: 128px;
+    --blog-gap: 40px;
+    --blog-serif: 'Newsreader', Georgia, 'Times New Roman', serif;
+    --blog-tamil: 'Noto Serif Tamil', 'Nirmala UI', 'Latha', serif;
+    --blog-display: 'Clash Display', 'General Sans', sans-serif;
+    --blog-label: 11.5px;
+
+    /* Each strand of writing gets its own light. Nothing is drawn - the theme
+       is carried by colour and texture, which is how film carries mood too. */
+    --accent-cinema: #a35c22;
+    /* projector amber, warm bulb through dust */
+    --accent-music: #2f6f66;
+    /* the green of an old cassette label */
+    --accent-writing: #6b5b8a;
+    /* ink */
+    --accent-research: #2563a8;
+    --accent-engineering: #3f6b2a;
+    --theme-accent: var(--accent-cinema);
+}
+
+html.dark-theme,
+[data-theme="dark"] {
+    --accent-cinema: #d9a066;
+    --accent-music: #6fbdb0;
+    --accent-writing: #a794c9;
+    --accent-research: #7fb2ec;
+    --accent-engineering: #9fcd7f;
+}
+
+[data-topic="research"] {
+    --theme-accent: var(--accent-research);
+}
+
+[data-topic="engineering"] {
+    --theme-accent: var(--accent-engineering);
+}
+
+[data-topic="cinema"] {
+    --theme-accent: var(--accent-cinema);
+}
+
+[data-topic="music"] {
+    --theme-accent: var(--accent-music);
+}
+
+[data-topic="writing"] {
+    --theme-accent: var(--accent-writing);
+}
+
+/* Film grain. Almost subliminal - you notice it when it's removed, not when
+   it's there. Sits above everything, catches nothing. */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    opacity: 0.05;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+}
+
+@media (prefers-reduced-motion: no-preference) {
+
+    /* The grain drifts by a couple of pixels - projector gate weave. */
+    body::after {
+        animation: gate-weave 8s steps(4) infinite;
+    }
+
+    @keyframes gate-weave {
+        0% {
+            transform: translate(0, 0);
+        }
+
+        25% {
+            transform: translate(-2px, 1px);
+        }
+
+        50% {
+            transform: translate(1px, -2px);
+        }
+
+        75% {
+            transform: translate(-1px, -1px);
+        }
+
+        100% {
+            transform: translate(0, 0);
+        }
+    }
+}
+
+/* Small caps labels - the single visual language for "this is metadata". */
+.label {
+    font-family: var(--blog-display);
+    font-size: var(--blog-label);
+    font-weight: 500;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--text-accent);
+}
+
+/* ---------- Chrome ---------- */
+
+.blog-nav {
+    max-width: calc(var(--blog-rail) + var(--blog-gap) + var(--blog-col));
+    margin: 0 auto;
+    padding: 26px 24px 0;
+}
+
+.blog-nav-back {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s ease;
+}
+
+.blog-nav-back:hover {
+    color: var(--text-primary);
+}
+
+/* ---------- Listing ----------
+   A track listing. Number, title, theme - three columns, tight rows, and
+   the horizontal space actually used instead of left empty. */
+
+.blog-header,
+.theme-bar,
+.blog-list-container,
+.blog-footer {
+    max-width: calc(var(--blog-rail) + var(--blog-gap) + var(--blog-col));
+    margin: 0 auto;
+    padding-left: 24px;
+    padding-right: 24px;
+}
+
+.blog-header {
+    padding-top: 40px;
+}
+
+.blog-title {
+    font-family: var(--blog-display);
+    font-size: 38px;
+    font-weight: 600;
+    letter-spacing: -1.2px;
+    line-height: 1;
+    margin: 0 0 12px;
+    color: var(--text-primary);
+}
+
+.blog-subtitle {
+    font-family: var(--blog-serif);
+    font-size: 17px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    margin: 0;
+    max-width: 52ch;
+}
+
+.theme-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 18px;
+    margin-top: 26px;
+    padding-bottom: 12px;
+}
+
+.theme-chip {
+    padding: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    font-family: var(--blog-display);
+    font-size: var(--blog-label);
+    font-weight: 500;
+    letter-spacing: 0.11em;
+    text-transform: uppercase;
+    color: var(--text-accent);
+    transition: color 0.18s ease;
+}
+
+.theme-chip:hover {
+    color: var(--text-secondary);
+}
+
+.theme-chip[aria-pressed="true"] {
+    color: var(--theme-accent);
+}
+
+.theme-chip[data-topic="all"][aria-pressed="true"] {
+    color: var(--text-primary);
+}
+
+.blog-list-container {
+    padding-top: 0;
+    padding-bottom: 72px;
+}
+
+.blog-entry {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr) auto;
+    column-gap: 18px;
+    align-items: baseline;
+    padding: 16px 0;
+    border-top: 1px solid var(--border-light);
+    text-decoration: none;
+}
+
+.blog-entry:last-child {
+    border-bottom: 1px solid var(--border-light);
+}
+
+.entry-num {
+    font-family: var(--blog-display);
+    font-size: 12.5px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+    color: var(--theme-accent);
+    opacity: 0.7;
+    transition: opacity 0.2s ease;
+}
+
+.blog-entry:hover .entry-num {
+    opacity: 1;
+}
+
+.blog-entry-title {
+    font-family: var(--blog-display);
+    font-size: 20px;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+    line-height: 1.3;
+    color: var(--text-primary);
+    margin: 0;
+    transition: color 0.2s ease;
+}
+
+.blog-entry:hover .blog-entry-title {
+    color: var(--theme-accent);
+}
+
+.blog-entry-desc {
+    font-family: var(--blog-serif);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--text-muted);
+    margin: 3px 0 0;
+    max-width: 58ch;
+}
+
+.entry-meta {
+    text-align: right;
+    white-space: nowrap;
+}
+
+.entry-meta .label {
+    color: var(--theme-accent);
+    opacity: 0.85;
+}
+
+.entry-meta .entry-date {
+    display: block;
+    margin-top: 3px;
+    font-family: var(--blog-serif);
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text-accent);
+    letter-spacing: 0;
+    text-transform: none;
+}
+
+.blog-loading,
+.blog-empty {
+    font-family: var(--blog-serif);
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 16px;
+    padding: 40px 0;
+}
+
+/* ---------- Post ----------
+   Two columns: a rail that holds every piece of metadata, and the writing.
+   Nothing is centred, so nothing floats in the middle of an empty screen. */
+
+.blog-post {
+    max-width: calc(var(--blog-rail) + var(--blog-gap) + var(--blog-col));
+    margin: 0 auto;
+    padding: 0 24px 80px;
+}
+
+.post-rail {
+    padding: 34px 0 0;
+}
+
+.post-rail .rail-item {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.post-rail .rail-topic {
+    color: var(--theme-accent);
+}
+
+.post-rail .rail-film {
+    font-family: var(--blog-serif);
+    font-size: 14px;
+    font-style: italic;
+    letter-spacing: 0;
+    text-transform: none;
+    color: var(--text-muted);
+}
+
+.post-header {
+    padding: 8px 0 26px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.post-title {
+    font-family: var(--blog-display);
+    font-size: 36px;
+    font-weight: 600;
+    letter-spacing: -1.2px;
+    line-height: 1.14;
+    color: var(--text-primary);
+    margin: 0;
+}
+
+.post-description {
+    font-family: var(--blog-serif);
+    font-size: 18px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--text-muted);
+    margin: 12px 0 0;
+    max-width: 50ch;
+}
+
+@media (min-width: 1000px) {
+    .blog-post {
+        display: grid;
+        grid-template-columns: var(--blog-rail) minmax(0, var(--blog-col));
+        column-gap: var(--blog-gap);
+        align-items: start;
+    }
+
+    .post-rail {
+        grid-column: 1;
+        grid-row: 1;
+        text-align: right;
+        position: sticky;
+        top: 34px;
+        padding-top: 12px;
+    }
+
+    .post-header {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+    .post-body {
+        grid-column: 2;
+        grid-row: 2;
+    }
+}
+
+/* ---------- Post body ---------- */
+
+.post-body {
+    font-family: var(--blog-serif);
+    font-size: 18px;
+    line-height: 1.68;
+    color: var(--text-secondary);
+}
+
+.post-body p {
+    margin: 0 0 20px;
+}
+
+.post-body h2 {
+    font-family: var(--blog-display);
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: -0.3px;
+    color: var(--text-primary);
+    margin: 36px 0 10px;
+}
+
+.post-body h3 {
+    font-family: var(--blog-display);
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 28px 0 8px;
+}
+
+.post-body a {
+    color: var(--text-primary);
+    text-decoration: none;
+    box-shadow: inset 0 -1px 0 var(--theme-accent);
+    transition: box-shadow 0.2s ease;
+}
+
+.post-body a:hover {
+    box-shadow: inset 0 -2px 0 var(--theme-accent);
+}
+
+.post-body strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+.post-body hr {
+    border: none;
+    height: 1px;
+    background: var(--border-light);
+    margin: 34px 0;
+}
+
+.post-body ul,
+.post-body ol {
+    margin: 0 0 20px;
+    padding-left: 20px;
+}
+
+.post-body li {
+    margin: 5px 0;
+}
+
+.post-body blockquote {
+    margin: 24px 0;
+    padding-left: 18px;
+    border-left: 2px solid var(--border-medium);
+    color: var(--text-muted);
+    font-style: italic;
+}
+
+.post-body pre {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-light);
+    border-radius: 4px;
+    padding: 16px;
+    overflow-x: auto;
+    margin: 24px 0;
+    font-size: 13.5px;
+    line-height: 1.55;
+}
+
+.post-body code {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.86em;
+}
+
+.post-body p code,
+.post-body li code {
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-light);
+    border-radius: 3px;
+    padding: 1px 5px;
+}
+
+.post-body img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 28px 0;
+}
+
+/* ---------- Lyrics ----------
+   Two lines. The Tamil, then what it means. That's the whole block. */
+
+.lyric {
+    margin: 30px 0;
+    padding: 0 0 0 20px;
+    border-left: 2px solid var(--theme-accent);
+}
+
+.lyric-stanza {
+    margin: 0 0 16px;
+}
+
+.lyric-stanza:last-of-type {
+    margin-bottom: 0;
+}
+
+.lyric-ta,
+.lyric-en {
+    display: block;
+}
+
+.lyric-ta {
+    font-family: var(--blog-tamil);
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.8;
+    color: var(--text-primary);
+}
+
+.lyric-en {
+    font-family: var(--blog-serif);
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--text-accent);
+    margin-top: 6px;
+}
+
+/* Lowercase, italic, small. A footnote, not a headline. */
+.block-credit {
+    margin-top: 12px;
+    font-family: var(--blog-serif);
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text-accent);
+}
+
+.block-credit .sep,
+.dialogue-who .sep {
+    margin: 0 6px;
+    opacity: 0.5;
+}
+
+/* ---------- Dialogue ----------
+   Same registers, no rule. A line someone said, not a line someone sang. */
+
+.dialogue {
+    margin: 30px 0;
+}
+
+.dialogue-line {
+    margin: 0 0 12px;
+}
+
+.dialogue-ta,
+.dialogue-en {
+    display: block;
+}
+
+.dialogue-ta {
+    font-family: var(--blog-tamil);
+    font-size: 18px;
+    line-height: 1.75;
+    color: var(--text-primary);
+}
+
+.dialogue-en {
+    font-family: var(--blog-serif);
+    font-size: 16px;
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--text-accent);
+    margin-top: 6px;
+}
+
+.dialogue-who {
+    margin-top: 8px;
+    font-family: var(--blog-serif);
+    font-size: 13px;
+    font-style: italic;
+    color: var(--text-accent);
+}
+
+/* ---------- Media ----------
+   Sits inside the column, never wider than the writing it belongs to. */
+
+.media {
+    margin: 30px 0;
+}
+
+.media-video,
+.yt-facade,
+.yt-frame {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: 4px;
+    background: var(--bg-tertiary);
+    object-fit: cover;
+}
+
+/* Not .media-video: that crops to 16/9, which is right for a frame of film
+   and wrong for a photograph. The two-class selector is what beats the
+   margin on .post-body img - the figure owns the spacing here. */
+.media .media-image {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    margin: 0;
+}
+
+.media-caption {
+    margin: 10px 0 0;
+    text-align: center;
+    font-family: var(--blog-serif);
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.5;
+    color: var(--text-accent);
+}
+
+.media-missing .media-video {
+    display: none;
+}
+
+.media-missing::before {
+    content: 'clip unavailable';
+    display: block;
+    padding: 34px 0;
+    text-align: center;
+    font-family: var(--blog-serif);
+    font-style: italic;
+    font-size: 14px;
+    color: var(--text-accent);
+    background: var(--bg-tertiary);
+    border: 1px dashed var(--border-medium);
+    border-radius: 4px;
+}
+
+.yt-facade {
+    position: relative;
+    padding: 0;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.yt-thumb {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    margin: 0;
+    border-radius: 4px;
+    transition: filter 0.25s ease;
+}
+
+.yt-facade:hover .yt-thumb {
+    filter: brightness(0.82);
+}
+
+.yt-play {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 54px;
+    height: 54px;
+    margin: -27px 0 0 -27px;
+    border-radius: 50%;
+    background: rgba(20, 20, 20, 0.7);
+    transition: background 0.2s ease;
+}
+
+.yt-play::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -8px 0 0 -5px;
+    border-style: solid;
+    border-width: 8px 0 8px 13px;
+    border-color: transparent transparent transparent #fff;
+}
+
+.yt-facade:hover .yt-play {
+    background: rgba(20, 20, 20, 0.9);
+}
+
+/* ---------- Footer ---------- */
+
+.blog-footer {
+    padding-top: 22px;
+    padding-bottom: 56px;
+    border-top: 1px solid var(--border-light);
+    font-size: 13px;
+}
+
+.blog-footer a {
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.blog-footer a:hover {
+    color: var(--text-primary);
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 640px) {
+    .blog-title {
+        font-size: 30px;
+    }
+
+    .post-title {
+        font-size: 27px;
+        letter-spacing: -0.9px;
+    }
+
+    .post-description {
+        font-size: 16.5px;
+    }
+
+    .post-body {
+        font-size: 17px;
+    }
+
+    .blog-entry {
+        grid-template-columns: 26px minmax(0, 1fr);
+        column-gap: 12px;
+    }
+
+    /* The theme label drops; the date moves under the description. */
+    .entry-meta {
+        grid-column: 2;
+        text-align: left;
+        margin-top: 5px;
+    }
+
+    .entry-meta .label {
+        display: none;
+    }
+
+    .entry-meta .entry-date {
+        margin-top: 0;
+    }
+
+    .blog-entry-title {
+        font-size: 18px;
+    }
+
+    .blog-entry-desc {
+        font-size: 15px;
+    }
+
+    .lyric-ta {
+        font-size: 18px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+    .yt-thumb,
+    .entry-num,
+    .theme-chip,
+    .post-body a,
+    .blog-entry-title {
+        transition: none;
+    }
+}
+
+/* The ground lives on <html> and body stays clear, so the drifting
+   backdrop in body::before isn't painted over. */
+html {
+    background: var(--bg-primary);
+}
+
+body {
+    background: transparent;
+}
