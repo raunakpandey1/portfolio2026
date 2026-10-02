@@ -1427,3 +1427,10 @@ kbd {
     color: var(--text-primary);
     margin: 28px 0 8px;
 }
+
+/* Longer status text wraps cleanly on narrow screens */
+.status-pill {
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 2px;
+}

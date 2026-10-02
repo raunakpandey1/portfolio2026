@@ -324,12 +324,6 @@
         return;
       }
 
-      if (WEB3FORMS_ACCESS_KEY.startsWith('YOUR_')) {
-        const to = (siteContent.header.socialLinks.find(l => l.url.startsWith('mailto:')) || {}).url || 'mailto:';
-        location.href = `${to}?subject=${encodeURIComponent('Portfolio contact from ' + name)}&body=${encodeURIComponent(message + '\n\n- ' + name + ' (' + email + ')')}`;
-        return;
-      }
-
       submitBtn.disabled = true;
       const originalButtonText = submitBtn.textContent;
       submitBtn.textContent = siteContent?.contact.submitButtonSending || 'Sending...';
