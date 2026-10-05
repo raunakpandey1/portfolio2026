@@ -6,5 +6,3 @@ theme: writing
 ---
 
 This is the first post on my new site. I plan to write about what I'm learning in my Master's at the University at Buffalo: machine learning, computer vision, and the research process, plus the occasional note on building software.
-
-Posts are plain markdown files in `blog/posts/`. Add the file name to `writing.onSiteArticles` in `content/content.json` and it shows up here and on the home page.

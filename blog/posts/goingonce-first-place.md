@@ -17,7 +17,9 @@ This wasn't my first UB hackathon. I had participated twice before, and neither 
 
 The first one still hurts a little. We did everything right, except one thing. My team and I stayed awake for more than 24 hours building our project. And then we forgot to attach our GitHub link on Devpost. Because of that one missing link, we never got a table for judging. No judge ever saw what we built. That was my first heartbreak.
 
-Lesson learned the hard way: the submission matters as much as the project. The second hackathon didn't end with first place either.
+Lesson learned the hard way: the submission matters as much as the project.
+
+The second one hurt in a different way. This time I felt a lack of coordination in our team. We didn't stick to the problem statement. We got excited about adding more and more features, and we never stopped to ask if they were actually useful, or if that was even the goal. By the end, we couldn't even prepare a proper pitch around the things we had built.
 
 So this time I didn't want to just code faster. I wanted to do something different.
 
@@ -52,7 +54,7 @@ Was it a finished product? No. Some parts were real, like the agents, the histor
 
 Writing code is the easy part now. With the tools we have today, you can build a lot in three hours. What's hard, and what really matters, is the idea. What are you building, why are you building it, and what impact will it have on the people who use it?
 
-Looking back at my earlier hackathons, I think we jumped into code too fast. This time, those two hours of just talking were the best two hours we spent all day.
+Looking back, my second hackathon taught me this the hard way. We chased features instead of the problem. This time, those two hours of just talking were the best two hours we spent all day.
 
 ## The moment
 
