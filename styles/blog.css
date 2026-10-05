@@ -24,6 +24,7 @@
     /* ink */
     --accent-research: #2563a8;
     --accent-engineering: #3f6b2a;
+    --accent-hackathons: #b4532a;
     --theme-accent: var(--accent-cinema);
 }
 
@@ -34,6 +35,11 @@ html.dark-theme,
     --accent-writing: #a794c9;
     --accent-research: #7fb2ec;
     --accent-engineering: #9fcd7f;
+    --accent-hackathons: #f0a07a;
+}
+
+[data-topic="hackathons"] {
+    --theme-accent: var(--accent-hackathons);
 }
 
 [data-topic="research"] {

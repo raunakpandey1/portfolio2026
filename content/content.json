@@ -176,7 +176,7 @@
       },
       {
         "timespan": "2019 - 2023",
-        "logo": "assets/mu.svg",
+        "logo": "assets/mu.png",
         "description": "<strong>Bachelor's in Computer Science</strong> at <a href=\"https://mu.ac.in/\">University of Mumbai</a>. <br/> GPA: 4.0 / 4.0"
       }
     ]
@@ -186,6 +186,9 @@
     "subtitle": "",
     "onSiteArticles": [
       {
+        "file": "goingonce-first-place.md"
+      },
+      {
         "file": "hello-world.md"
       }
     ],
@@ -194,6 +197,14 @@
   "projects": {
     "title": "pet projects",
     "items": [
+      {
+        "name": "GoingOnce",
+        "category": "ai",
+        "url": "https://github.com/raunakpandey1/goingonce",
+        "image": "assets/projects/goingonce.jpg",
+        "description": "won 1st place in the ACV Auctions challenge at UB's AI for Good hackathon (Oct 2026). Four AI agents built with LangGraph and Claude help car dealers buy, sell, negotiate and move fleet cars, built by my team in a single five-hour sprint.",
+        "detailedDescription": "1st place in the ACV Auctions + Copart challenge at <a href=\"/blog/post.html?slug=goingonce-first-place\">AI for Good, Fall 2026</a>, a hackathon hosted by UB's Startup and Innovation Collaboratory on October 3, 2026. We had 10:30 AM to 3:30 PM to build it.<br/><br/><img class=\"modal-img\" src=\"assets/goingonce/first-place.jpg\" alt=\"Team GoingOnce receiving the ACV Auctions first place award\" loading=\"lazy\"/><strong>The idea:</strong> every car finds its best buyer, across ACV and Copart. Four AI agents, one for each part of a car dealer's day:<ul><li><strong>Buy:</strong> a dealer says what they need in plain words. The agent searches ACV and Copart, checks each car's history, throws out cars with hidden damage, and asks before bidding.</li><li><strong>Sell:</strong> photos in. AI writes the condition report, shows where the seller keeps the most money, and finds buyers already waiting.</li><li><strong>Negotiate:</strong> each side's agent keeps a private limit, and a mediator closes the gap in rounds. Then the deal closes itself: payment, insurance, title, truck.</li><li><strong>Fleet:</strong> a rental fleet selling 120 similar cars gets spread across markets in full truckloads, so prices hold and transport stays cheap.</li></ul><img class=\"modal-img\" src=\"assets/goingonce/platform.jpg\" alt=\"GoingOnce buying assistant inside an ACV-style marketplace\" loading=\"lazy\"/><div class=\"modal-grid\"><img src=\"assets/goingonce/buy.jpg\" alt=\"Buy tab\" loading=\"lazy\"/><img src=\"assets/goingonce/sell.jpg\" alt=\"Sell tab\" loading=\"lazy\"/><img src=\"assets/goingonce/negotiate.jpg\" alt=\"Negotiate tab\" loading=\"lazy\"/><img src=\"assets/goingonce/fleet.jpg\" alt=\"Fleet tab\" loading=\"lazy\"/></div><strong>Team:</strong> Raunak Kumar Pandey, Vedant Shinde, Aniket Khade, Jay Pathare.<br/><br/><strong>Stack:</strong> Python · LangGraph · Claude · Streamlit · FastAPI · React<br/><br/><a href=\"/blog/post.html?slug=goingonce-first-place\">Read the story of how we won →</a>"
+      },
       {
         "name": "PatchPilot",
         "url": "https://github.com/raunakpandey1/PatchPilot",

@@ -1434,3 +1434,27 @@ kbd {
     justify-content: center;
     row-gap: 2px;
 }
+
+/* Images inside the project modal */
+.modal-img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    border: 1px solid var(--border-light);
+    margin: 4px 0 18px;
+}
+
+.modal-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 0 0 18px;
+}
+
+.modal-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    border: 1px solid var(--border-light);
+}
